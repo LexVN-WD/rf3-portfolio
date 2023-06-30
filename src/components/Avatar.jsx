@@ -1,9 +1,17 @@
 // Note: Avatar Component
 import React, { useEffect, useRef } from 'react'
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber';
+import { useControls } from 'leva';
+import * as THREE from 'three';
 
 export function Avatar(props) {
   const group = useRef();
+
+  const { headFollow, cursorFollow } = useControls({
+    headFollow: false,
+    cursorFollow: false,
+  });
 
   const { nodes, materials } = useGLTF('models/lexvn.glb');
 
@@ -11,7 +19,17 @@ export function Avatar(props) {
 
   typingAnimation[0].name = "Typing";
 
-  const { actions } = useAnimations(typingAnimation, group)
+  const { actions } = useAnimations(typingAnimation, group);
+
+  useFrame((state) => {
+    if (headFollow) {
+      group.current.getObjectByName("Head").lookAt(state.camera.position);
+    }
+    if (cursorFollow) {
+      const target = new THREE.Vector3(state.mouse.x, state.mouse.y, 1);
+      group.current.getObjectByName("Spine2").lookAt(target);
+    }
+  });
 
   useEffect(() => {
     actions['Typing'].reset().play();
