@@ -13,13 +13,21 @@ export function Avatar(props) {
     cursorFollow: false,
   });
 
+  const { animation } = props;
+
   const { nodes, materials } = useGLTF('models/lexvn.glb');
 
   const { animations: typingAnimation } = useFBX('animations/Typing.fbx');
+  const { animations: fallingAnimation } = useFBX('animations/Falling.fbx');
+  const { animations: idleAnimation } = useFBX('animations/Idle.fbx');
+  
 
   typingAnimation[0].name = "Typing";
+  fallingAnimation[0].name = "Falling";
+  idleAnimation[0].name = "Idle";
 
-  const { actions } = useAnimations(typingAnimation, group);
+
+  const { actions } = useAnimations([typingAnimation[0], fallingAnimation[0], idleAnimation[0]], group);
 
   useFrame((state) => {
     if (headFollow) {
@@ -32,8 +40,11 @@ export function Avatar(props) {
   });
 
   useEffect(() => {
-    actions['Typing'].reset().play();
-  }, []);
+    actions[animation].reset().fadeIn(0.5).play();
+    return () => {
+      actions[animation].reset().fadeOut(0.5);
+    };
+  }, [animation]);
 
   return (
     <group {...props} ref={group} dispose={null}>
