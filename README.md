@@ -1,6 +1,6 @@
 # r3f-vite-starter
 A boilerplate to build R3F projects
-
+**Cloned from Wawa Sensei Youtube**
 ```
 yarn
 yarn dev
