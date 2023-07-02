@@ -13,7 +13,6 @@ export const Experience = () => {
 
   return (
     <>
-      <OrbitControls />
       <Sky />
       <Environment preset="sunset" />
       <group position-y={-1}>
