@@ -1,11 +1,25 @@
+import { motion } from "framer-motion";
+
 const Section = (props) => {
   const {children} = props;
   return (
-    <section className={`
-    h-screen w-screen p-8 max-w-screen-2xl mx-auto flex flex-col items-start justify-center`}
+    <motion.section 
+      className={`h-screen w-screen p-8 max-w-screen-2xl mx-auto flex flex-col items-start justify-center`}
+        initial={{ 
+          opacity: 0,
+          y: 50 
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 1,
+            delay: 0.5,
+          },
+        }}
     >
       {children}
-    </section>
+    </motion.section>
   )
 };
 
@@ -32,15 +46,22 @@ const AboutSection = () => {
         <br />
         <span className="bg-white px-1 italic">Lex Van-Nugent</span>
       </h1>
-      <p className="text-lg text-gray-600 met-4">
+      <motion.p className="text-lg text-gray-600 met-4"
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}}
+      >
         Passionate, driven, and always looking to learn!
         <br />
         As a Web Developer, my goal is to continually add to my knowledge base and harness it to create products that are not only modern, but have the user-experience the focal point.
 My background in entertainment and social sciences provides me with a unique perspective on how to approach problems and find solutions.
-      </p>
-      <button className={`bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16`}>
+      </motion.p>
+      <motion.button 
+      className={`bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16`}
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}} 
+      >
         Contact Me
-      </button>
+      </motion.button>
     </Section>
   );
 };
@@ -84,11 +105,21 @@ const SkillsSection = () => {
           <div className="mt-8 space-y-4">
             {skills.map((skill, index) => (
               <div className="w-64" key={index}>
-                <h3 className="text-xl font-bold text-gray-800">{skill.title}</h3>
+                <motion.h3 
+                  className="text-xl font-bold text-gray-800"
+                  initial={{ opacity: 0, }}
+                  whileInView={{ opacity: 1,}}
+                  transition={{ duration: 1, delay: 1 + index * 0.2 }}
+                  >
+                    {skill.title}
+                  </motion.h3>
                 <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
-                  <div
+                  <motion.div
                     className="h-full bg-indigo-500 rounded-full"
-                    style={{ width: `${skill.level}%`}}
+                    style={{ width: `${skill.level}% `}}
+                    initial={{ scaleX: 0, originX: 0, }}
+                    whileInView={{ scaleX: 1, }}
+                    transition={{ duration: 1, delay: 1 + index * 0.2, }}
                     />
                 </div>
               </div>
