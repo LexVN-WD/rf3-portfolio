@@ -4,10 +4,12 @@ import { Scroll, ScrollControls } from "@react-three/drei";
 import Experience  from "./components/Experience";
 import Interface from "./components/Interface";
 import ScrollManager from "./components/ScrollManager";
+import Menu from "./components/Menu";
 
 function App() {
 
   const [section, setSection] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
@@ -21,6 +23,7 @@ function App() {
         </Scroll>
       </ScrollControls>
     </Canvas>
+    <Menu onSectionChange={setSection} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
     </>
   );
 }
