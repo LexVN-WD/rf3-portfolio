@@ -100,7 +100,9 @@ const skills = [
 const SkillsSection = () => {
   return (
     <Section>
-        <div>
+        <motion.div
+          whileInView={"visible"}
+        >
           <h2 className="text-5xl font-bold">Skills</h2>
           <div className="mt-8 space-y-4">
             {skills.map((skill, index) => (
@@ -108,8 +110,12 @@ const SkillsSection = () => {
                 <motion.h3 
                   className="text-xl font-bold text-gray-800"
                   initial={{ opacity: 0, }}
-                  whileInView={{ opacity: 1,}}
-                  transition={{ duration: 1, delay: 1 + index * 0.2 }}
+                  variants={{
+                    visible: { 
+                      opacity: 1,
+                      transition: { duration: 1, delay: 1 + index * 0.2 },
+                    },
+                  }}
                   >
                     {skill.title}
                   </motion.h3>
@@ -118,14 +124,20 @@ const SkillsSection = () => {
                     className="h-full bg-indigo-500 rounded-full"
                     style={{ width: `${skill.level}% `}}
                     initial={{ scaleX: 0, originX: 0, }}
-                    whileInView={{ scaleX: 1, }}
-                    transition={{ duration: 1, delay: 1 + index * 0.2, }}
+                    variants={{
+                      visible: { 
+                        scaleX: 1, 
+                        transition: {
+                           duration: 1, delay: 1 + index * 0.2, 
+                          }
+                      },
+                    }}
                     />
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
     </Section>
   );
 };
