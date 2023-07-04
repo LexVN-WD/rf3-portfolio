@@ -1,8 +1,8 @@
 import { Environment, OrbitControls, Sky, ContactShadows } from "@react-three/drei";
-import { Avatar } from "./Avatar";
+import Avatar from "./Avatar";
 import { useControls } from "leva";
 
-export const Experience = () => {
+export default function Experience() {
 
   const { animation } = useControls({
     animation: {

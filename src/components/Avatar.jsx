@@ -5,7 +5,7 @@ import { useFrame } from '@react-three/fiber';
 import { useControls } from 'leva';
 import * as THREE from 'three';
 
-export function Avatar(props) {
+export default function Avatar(props) {
   const group = useRef();
 
   const { headFollow, cursorFollow, wireframe } = useControls({
