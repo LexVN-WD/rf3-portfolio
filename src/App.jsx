@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Scroll, ScrollControls } from "@react-three/drei";
 import { MotionConfig } from "framer-motion";
+import { Leva } from "leva";
 
 
 
@@ -9,27 +10,31 @@ import Experience  from "./components/Experience";
 import Interface from "./components/Interface";
 import ScrollManager from "./components/ScrollManager";
 import Menu from "./components/Menu";
+import Cursor from "./components/Cursor";
+import { framerMotionConfig } from "../lib/config";
 
 function App() {
 
   const [section, setSection] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [section]);
+
+
   return (
     <>
-    <MotionConfig transition={{
-      type: "spring",
-      mass: 5,
-      stiffness: 500,
-      damping: 50,
-      restDelta: 0.0001,
-
-    }}>
+    <MotionConfig
+        transition={{
+          ...framerMotionConfig,
+        }}
+      >
       <Canvas shadows camera={{ position: [2, 2.5, 8], fov: 40 }}>
         <ScrollControls pages={4} damping={0.1} >
           <ScrollManager section={section} onSectionChange={setSection}/>
           <Scroll>
-            <Experience section={section} />
+            <Experience section={section} menuOpen={menuOpen} />
           </Scroll>
           <Scroll html>
             <Interface />
@@ -37,7 +42,9 @@ function App() {
         </ScrollControls>
       </Canvas>
       <Menu onSectionChange={setSection} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Cursor />
     </MotionConfig>
+    <Leva hidden />
     </>
   );
 }

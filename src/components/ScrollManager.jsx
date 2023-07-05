@@ -42,4 +42,4 @@ export default function ScrollManager(props) {
   }
   )
   return null;
-}
+};

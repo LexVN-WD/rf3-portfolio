@@ -1,21 +1,21 @@
 // Note: Avatar Component
-import React, { useEffect, useRef } from 'react'
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 import { useControls } from 'leva';
+import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three';
 
 export default function Avatar(props) {
-  const group = useRef();
-
+  const { animation } = props;
+  
   const { headFollow, cursorFollow, wireframe } = useControls({
     headFollow: false,
     cursorFollow: false,
     wireframe: false,
   });
-
-  const { animation } = props;
-
+  
+  
+  const group = useRef();
   const { nodes, materials } = useGLTF('models/lexvn.glb');
 
   const { animations: typingAnimation } = useFBX('animations/Typing.fbx');
@@ -69,7 +69,7 @@ export default function Avatar(props) {
         <skinnedMesh name="Wolf3D_Teeth" geometry={nodes.Wolf3D_Teeth.geometry} material={materials.Wolf3D_Teeth} skeleton={nodes.Wolf3D_Teeth.skeleton} morphTargetDictionary={nodes.Wolf3D_Teeth.morphTargetDictionary} morphTargetInfluences={nodes.Wolf3D_Teeth.morphTargetInfluences} />
       </group>
     </group>
-  )
+  );
 }
 
 useGLTF.preload('models/lexvn.glb')
