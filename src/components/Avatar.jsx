@@ -55,7 +55,7 @@ export default function Avatar(props) {
 
   return (
     <group {...props} ref={group} dispose={null}>
-      <group rotation-x={-Math.PI / 2}>
+      <group rotation-x={-Math.PI / 1.9}>
         <primitive object={nodes.Hips} />
         <skinnedMesh geometry={nodes.Wolf3D_Body.geometry} material={materials.Wolf3D_Body} skeleton={nodes.Wolf3D_Body.skeleton} />
         <skinnedMesh geometry={nodes.Wolf3D_Outfit_Bottom.geometry} material={materials.Wolf3D_Outfit_Bottom} skeleton={nodes.Wolf3D_Outfit_Bottom.skeleton} />

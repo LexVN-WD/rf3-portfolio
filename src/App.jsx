@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Scroll, ScrollControls } from "@react-three/drei";
+import { Scroll, ScrollControls, Stars, Sky, } from "@react-three/drei";
 import { MotionConfig } from "framer-motion";
 import { Leva } from "leva";
 
@@ -30,7 +30,9 @@ function App() {
           ...framerMotionConfig,
         }}
       >
-      <Canvas shadows camera={{ position: [2, 2.5, 8], fov: 40 }}>
+      <Canvas shadows camera={{ position: [1, 2, 8], fov: 40 }}>
+        <Stars radius={75} depth={50} count={50000} factor={4} saturation={3} fade speed={1.2} />
+        <Sky distance={450000} sunPosition={[1, -1, 1]} inclination={1} azimuth={-180} elevation={10}/>
         <ScrollControls pages={4} damping={0.1} >
           <ScrollManager section={section} onSectionChange={setSection}/>
           <Scroll>

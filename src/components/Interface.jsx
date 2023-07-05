@@ -108,7 +108,7 @@ const SkillsSection = () => {
             {skills.map((skill, index) => (
               <div className="w-64" key={index}>
                 <motion.h3 
-                  className="text-xl font-bold text-gray-800"
+                  className="text-xl font-bold text-white"
                   initial={{ opacity: 0, }}
                   variants={{
                     visible: { 

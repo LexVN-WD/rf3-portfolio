@@ -56,8 +56,8 @@ export default function Office(props) {
         <mesh name="Box20179_1004_2" geometry={nodes.Box20179_1004_2.geometry} material={textureMaterial} />
         <mesh name="Box20179_1004_3" geometry={nodes.Box20179_1004_3.geometry} material={textureMaterial} />
       </group>
-      <mesh name="Keyboard" geometry={nodes.Keyboard.geometry} material={textureMaterial} position={[-0.161, 1.107, -2.026]} />
-      <mesh name="Mouse" geometry={nodes.Mouse.geometry} material={textureMaterial} position={[0.329, 1.111, -2.012]} rotation={[-Math.PI, 0.351, -Math.PI]} />
+      <mesh name="Keyboard" geometry={nodes.Keyboard.geometry} material={materials.lambert3SG} position={[0.093, 1.107, -2.114]} rotation={[0, -0.227, 0]} />
+      <mesh name="Mouse" geometry={nodes.Mouse.geometry} material={materials.ComputerMouse_mat1} position={[0.528, 1.111, -1.905]} rotation={[-Math.PI, 0.351, -Math.PI]} />
       <group name="Laptop" position={[0.755, 1.116, -2.302]} rotation={[Math.PI, -0.768, Math.PI]}>
         <mesh name="LapTop_Cube002-Mesh" geometry={nodes['LapTop_Cube002-Mesh'].geometry} material={textureMaterial} />
         <mesh name="LapTop_Cube002-Mesh_1" geometry={nodes['LapTop_Cube002-Mesh_1'].geometry} material={textureMaterial} />
