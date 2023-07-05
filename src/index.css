@@ -9,4 +9,6 @@
 
 body {
   margin: 0;
+  background-color: #00002b;
+  background-image: linear-gradient(62deg, #00002b 0%, #340071 100%);
 }

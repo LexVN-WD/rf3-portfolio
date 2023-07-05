@@ -1,5 +1,6 @@
 import { Environment, OrbitControls, Sky, ContactShadows } from "@react-three/drei";
 import Avatar from "./Avatar";
+import Office from "./Office";
 import { useControls } from "leva";
 
 export default function Experience() {
@@ -15,6 +16,7 @@ export default function Experience() {
     <>
       <Sky />
       <Environment preset="sunset" />
+      <Office />
       <group position-y={-1}>
         <ContactShadows opacity={0.55} scale={10} blur={1} far={10} resolution={256} color="#000000" />
         <Avatar animation={animation}/>
