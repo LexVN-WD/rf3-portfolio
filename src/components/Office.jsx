@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useGLTF, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
+import { motion } from "framer-motion-3d";
+import { animate, useMotionValue } from 'framer-motion';
+import { useFrame } from '@react-three/fiber';
 
 export default function Office(props) {
+  const {section} = props;
+
   const { nodes, materials } = useGLTF('models/scene.gltf');
 
   const texture = useTexture('textures/baked.jpg');
@@ -12,10 +17,22 @@ export default function Office(props) {
 
   const textureMaterial = new THREE.MeshStandardMaterial({
     map: texture,
+    transparent: true,
+    opacity: 1,
   });
+
+  const textureOpacity = useMotionValue(0);
+
+  useEffect(() => {
+    animate(textureOpacity, section === 0 ? 1 : 0);
+  }, [section]);
   
+  useFrame(() => {
+    textureMaterial.opacity = textureOpacity.get();
+  })
+
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} animate={{scale: section === 0 ? 1 : 0}}>
       <group name="Curtains" position={[-2.665, 0.191, -0.041]} rotation={[-Math.PI / 2, 0, 1.557]}>
         <mesh name="Curtains_Double" geometry={nodes.Curtains_Double.geometry} material={textureMaterial} />
         <mesh name="Curtains_Double_1" geometry={nodes.Curtains_Double_1.geometry} material={textureMaterial} />
@@ -84,9 +101,6 @@ export default function Office(props) {
         <mesh name="Node-Mesh002_2" geometry={nodes['Node-Mesh002_2'].geometry} material={textureMaterial} />
         <mesh name="Node-Mesh002_3" geometry={nodes['Node-Mesh002_3'].geometry} material={textureMaterial} />
         <mesh name="Node-Mesh002_4" geometry={nodes['Node-Mesh002_4'].geometry} material={textureMaterial} />
-        <mesh name="Node-Mesh002_5" geometry={nodes['Node-Mesh002_5'].geometry} material={textureMaterial} />
-        <mesh name="Node-Mesh002_6" geometry={nodes['Node-Mesh002_6'].geometry} material={textureMaterial} />
-        <mesh name="Node-Mesh002_7" geometry={nodes['Node-Mesh002_7'].geometry} material={textureMaterial} />
       </group>
       <mesh name="Coffee" geometry={nodes.Coffee.geometry} material={textureMaterial} position={[-0.206, 2.757, -0.518]} />
       <mesh name="Corkboard" geometry={nodes.Corkboard.geometry} material={textureMaterial} position={[-1.654, 1.724, -2.772]} />
@@ -100,9 +114,9 @@ export default function Office(props) {
         <mesh name="mic001_2" geometry={nodes.mic001_2.geometry} material={textureMaterial} />
         <mesh name="mic001_3" geometry={nodes.mic001_3.geometry} material={textureMaterial} />
       </group>
-      <mesh name="Plane002" geometry={nodes.Plane002.geometry} material={textureMaterial} />
-      <mesh name="Plane002_1" geometry={nodes.Plane002_1.geometry} material={textureMaterial} />
-      <mesh name="Plane002_2" geometry={nodes.Plane002_2.geometry} material={textureMaterial} />
+      <motion.mesh name="Plane002" geometry={nodes.Plane002.geometry} material={textureMaterial} />
+      <motion.mesh name="Plane002_1" geometry={nodes.Plane002_1.geometry} material={textureMaterial} />
+      <motion.mesh name="Plane002_2" geometry={nodes.Plane002_2.geometry} material={textureMaterial} />
     </group>
   )
 }

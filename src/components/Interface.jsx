@@ -41,12 +41,12 @@ export default function Interface() {
 const AboutSection = () => {
   return (
     <Section>
-      <h1 className="text-6xl font-extrabold leading-snug">
+      <h1 className="text-6xl font-extrabold leading-snug text-white">
         Hello, I'm
         <br />
-        <span className="bg-white px-1 italic">Lex Van-Nugent</span>
+        <span className="px-1 italic">Lex Van-Nugent</span>
       </h1>
-      <motion.p className="text-lg text-gray-600 met-4"
+      <motion.p className="text-lg text-gray-200 met-4"
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}}
       >
