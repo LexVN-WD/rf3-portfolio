@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import { framerMotionConfig } from "../../lib/config";
 import Office from "./Office";
 import Avatar from "./Avatar";
+import Projects from "./Projects";
 
 
 
@@ -143,6 +144,7 @@ export default function Experience(props) {
       >
         <directionalLight position={[-5, 3, 5]} intensity={0.4} />
       </motion.group>
+      <Projects />
     </>
   );
 };
