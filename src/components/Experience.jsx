@@ -61,16 +61,6 @@ export default function Experience(props) {
     state.camera.position.x = cameraPositionX.get();
     state.camera.lookAt(cameraLookAtX.get(), 0, 0);
 
-    // const position = new THREE.Vector3();
-    // characterContainerAboutRef.current.getWorldPosition(position);
-    // console.log([position.x, position.y, position.z]);
-
-    // const quaternion = new THREE.Quaternion();
-    // characterContainerAboutRef.current.getWorldQuaternion(quaternion);
-    // const euler = new THREE.Euler();
-    // euler.setFromQuaternion(quaternion, "XYZ");
-
-    // console.log([euler.x, euler.y, euler.z]);
   });
 
 
@@ -82,6 +72,9 @@ export default function Experience(props) {
       rotation={[2.9, 1.35, -2.8]}
       scale={1.05}
       animate={"" + section}
+      transition={{
+        duration: 0.5
+      }}
       variants={{
         0: {
 
@@ -93,7 +86,29 @@ export default function Experience(props) {
           rotateX: 0,
           rotateY: 0,
           rotateZ: 0,
-        }
+        },
+        2: {
+            y: -viewport.height * 2 - 0.5,
+            x: -2,
+            z: 0,
+            rotateX: 0,
+            rotateY: Math.PI / 2,
+            rotateZ: 0,
+          },
+        3: {
+            y: -viewport.height * 3 - 0.4,
+            x: 0.25,
+            z: 7,
+            rotateX: 0,
+            rotateY: -Math.PI / 5,
+            rotateZ: 0,
+
+            scaleX: 1.3,
+            scaleY: 1.3,
+            scaleZ: 1.3,
+
+          },
+        
       }}
       >
       <Avatar animation={characterAnimation} />
@@ -116,20 +131,6 @@ export default function Experience(props) {
           scale={1.12}
         ></group>
       </motion.group>
-
-
-     {/* <motion.group
-        position={[1.5, 2, 3]}
-        scale={[0.9, 0.9, 0.9]}
-        rotation-y={-Math.PI / 4}
-        animate={{
-          y: section === 0 ? 0 : -1,
-        }}
-      >
-        <Office section={section}/>
-      </motion.group> */}
-
-
 
 
           {/* SKILLS */}
