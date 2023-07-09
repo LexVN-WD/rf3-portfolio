@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Projects from "./Projects";
 
 const Section = (props) => {
   const {children} = props;
@@ -141,6 +142,31 @@ const SkillsSection = () => {
     </Section>
   );
 };
+
+const ProjectsSection = () => {
+  return (
+    <Section>
+      
+      <motion.p className="text-lg text-gray-200 met-4"
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}}
+      >
+        Passionate, driven, and always looking to learn!
+        <br />
+        As a Web Developer, my goal is to continually add to my knowledge base and harness it to create products that are not only modern, but have the user-experience the focal point.
+My background in entertainment and social sciences provides me with a unique perspective on how to approach problems and find solutions.
+      </motion.p>
+      <motion.button 
+      className={`bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16`}
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}} 
+      >
+        Contact Me
+      </motion.button>
+    </Section>
+  );
+};
+
 
 const ContactSection = () => {
   return (

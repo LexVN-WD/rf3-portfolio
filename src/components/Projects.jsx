@@ -1,7 +1,10 @@
 import { Image, Text } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
+import { animate, useMotionValue } from "framer-motion";
 // import { animate, useMotionValue } from "framer-motion";
 import { motion } from "framer-motion-3d";
+import { useAtom } from "jotai";
+import { useEffect, useRef } from "react";
 // import { atom, useAtom } from "jotai";
 // import { useEffect, useRef } from "react";
 
@@ -21,10 +24,27 @@ export const projectsArray = [
 ];
 
 function Project(props) {
-  const { project } = props;
+  const { project, highlighted } = props;
+
+  const bg = useRef();
+
+  const bgOpacity = useMotionValue(0.4);
+
+  useEffect(() => {
+    animate(bgOpacity, highlighted ? 0.7 : 0.4)
+  }, [highlighted]);
+
+  useFrame(() => {
+    bg.current.material.opacity = bgOpacity.get();
+  });
+
   return (
     <group {...props}>
-      <mesh position-z={-0.001} onClick={() => window.open(project.url, "_blank")}>
+      <mesh
+        position-z={-0.001}
+        onClick={() => window.open(project.url, "_blank")}
+        ref={background}
+      >
         <planeGeometry args={[2.2, 2]} />
         <meshBasicMaterial color="black" transparent opacity={0.4} />
       </mesh>
@@ -57,9 +77,12 @@ function Project(props) {
 }
 
 
+export const currentProjectAtom = atom(Math.floor(projectsArray.length / 2));
+
 export default function Projects() {
 
   const { viewport } = useThree();
+  const [currentProject] = useAtom(currentProjectAtom);
 
 
   return (
@@ -71,7 +94,7 @@ export default function Projects() {
             key={"project_" + index}
             position={[index * 2.5, 0, -3]}
           >
-            <Project project={project} />
+            <Project project={project} highlighted={index===currentProject} />
           </motion.group>
         ))
       }
