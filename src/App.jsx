@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Scroll, ScrollControls, Stars, Sky, } from "@react-three/drei";
 import { MotionConfig } from "framer-motion";
@@ -38,10 +38,18 @@ function App() {
         <ScrollControls pages={4} damping={0.1} >
           <ScrollManager section={section} onSectionChange={setSection}/>
           <Scroll>
-            <Experience section={section} menuOpen={menuOpen} />
+            <Suspense>
+              {started && (
+                <Experience section={section} menuOpen={menuOpen} />
+              )}
+            </Suspense>
           </Scroll>
           <Scroll html>
-            <Interface setSection={setSection}/>
+            <Suspense>
+              {started && (
+                <Interface setSection={setSection}/>
+              )}
+            </Suspense>
           </Scroll>
         </ScrollControls>
       </Canvas>

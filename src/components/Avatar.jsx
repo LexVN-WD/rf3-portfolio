@@ -72,3 +72,6 @@ export default function Avatar(props) {
 }
 
 useGLTF.preload('models/lexvn.glb')
+useFBX.preload('animations/Typing.fbx');
+useFBX.preload('animations/Falling.fbx');
+useFBX.preload('animations/Idle.fbx');

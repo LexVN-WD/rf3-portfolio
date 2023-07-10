@@ -150,6 +150,9 @@ export default function Experience(props) {
           y: isMobile ? viewport.height / 9 : 0,
           // y: section === 0 ? 0 : section === 1 ? -1.5 : -1,
         }}
+        transition={{
+          duration: 0.8,
+        }}
 
         >
         <Office section={section}/>
