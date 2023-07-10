@@ -25,11 +25,13 @@ const Section = (props) => {
   )
 };
 
-export default function Interface() {
+export default function Interface(props) {
+  const { setSection } = props;
+
   return (
     <>
     <div className="flex flex-col items-center w-screen">
-      <AboutSection />
+      <AboutSection setSection={setSection}/>
       <SkillsSection />
       <ProjectsSection />
       <ContactSection />
@@ -38,7 +40,9 @@ export default function Interface() {
   )
 };
 
-const AboutSection = () => {
+const AboutSection = (props) => {
+
+  const { setSection } = props;
   return (
     <Section>
       <h1 className="text-6xl font-extrabold leading-snug text-white">
@@ -56,7 +60,8 @@ const AboutSection = () => {
 My background in entertainment and social sciences provides me with a unique perspective on how to approach problems and find solutions.
       </motion.p>
       <motion.button 
-      className={`bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16`}
+        onClick={() => setSection(3)}
+        className={`bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16`}
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}} 
       >

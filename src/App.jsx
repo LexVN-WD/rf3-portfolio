@@ -38,7 +38,7 @@ function App() {
             <Experience section={section} menuOpen={menuOpen} />
           </Scroll>
           <Scroll html>
-            <Interface />
+            <Interface setSection={setSection}/>
           </Scroll>
         </ScrollControls>
       </Canvas>
