@@ -3,10 +3,11 @@ import { useAtom } from "jotai";
 import { currentProjectAtom, projectsArray } from "./Projects";
 
 const Section = (props) => {
-  const {children} = props;
+  const {children, mobileTop} = props;
+  
   return (
     <motion.section 
-      className={`h-screen w-screen p-8 max-w-screen-2xl mx-auto flex flex-col items-start justify-center`}
+      className={`h-screen w-screen p-8 max-w-screen-2xl mx-auto flex flex-col items-start justify-center ${mobileTop ? "justify-start md:justify-center" : "justify-center"}`}
         initial={{ 
           opacity: 0,
           y: 50 
@@ -44,7 +45,7 @@ const AboutSection = (props) => {
 
   const { setSection } = props;
   return (
-    <Section>
+    <Section mobileTop>
       <h1 className="text-6xl font-extrabold leading-snug text-white">
         Hello, I'm
         <br />

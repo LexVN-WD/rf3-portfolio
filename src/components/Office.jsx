@@ -8,7 +8,9 @@ import { useFrame } from '@react-three/fiber';
 export default function Office(props) {
   const {section} = props;
   const { nodes, materials } = useGLTF('models/scene.gltf');
+
   const texture = useTexture('textures/baked.jpg');
+
   const textureVSCode = useVideoTexture('textures/vscode.mp4');
   textureVSCode.center.set(0.5, 0.5)
   textureVSCode.rotation = -Math.PI;
@@ -18,6 +20,7 @@ export default function Office(props) {
   texturePreview.center.set(0.5, 0.5)
   texturePreview.rotation = -Math.PI;
   texturePreview.repeat.x = -1;
+
 
 
 
@@ -40,7 +43,7 @@ export default function Office(props) {
   })
 
   return (
-    <group {...props} dispose={null} animate={{scale: section === 0 ? 1 : 0}}>
+    <group {...props} dispose={null} animate={{scale: section === 0 ? 1 : 0}} frustumCulled={false}>
       <mesh name="Screen2" geometry={nodes.Screen2.geometry} material={materials['Material.002']} position={[1.377, 0.113, -0.392]} >
         <meshBasicMaterial map={textureVSCode} toneMapped={false} rotation={[0, Math.PI, 0]}/>
       </mesh>

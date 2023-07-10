@@ -69,7 +69,7 @@ export default function Experience(props) {
   return (
     <>
       <Background />
-      <ambientLight intensity={0.5} />
+      <ambientLight intensity={0.2} />
         <motion.group 
           position={[1, 0.25, 4.32]}
           rotation={[2.9, 1.35, -2.8]}
