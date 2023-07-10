@@ -20,6 +20,8 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [started, setStarted] = useState(false);
 
+  const isMobile = window.innerWidth < 768;
+
   useEffect(() => {
     setMenuOpen(false);
   }, [section]);
@@ -28,35 +30,35 @@ function App() {
   return (
     <>
     <LoadingScreen started={started} setStarted={setStarted}/>
-    <MotionConfig
-        transition={{
-          ...framerMotionConfig,
-        }}
-      >
-      <Canvas shadows camera={{ position: [1, 1.8, 7], fov: 45  }}>
-        {/* <Canvas shadows camera={{ position: [1, 2, 8], fov: 40 }}> */}
-        <ScrollControls pages={4} damping={0.1} >
-          <ScrollManager section={section} onSectionChange={setSection}/>
-          <Scroll>
-            <Suspense>
-              {started && (
-                <Experience section={section} menuOpen={menuOpen} />
-              )}
-            </Suspense>
-          </Scroll>
-          <Scroll html>
-            <Suspense>
-              {started && (
-                <Interface setSection={setSection}/>
-              )}
-            </Suspense>
-          </Scroll>
-        </ScrollControls>
-      </Canvas>
-      <Menu onSectionChange={setSection} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <Cursor />
-    </MotionConfig>
-    <Leva hidden />
+      <MotionConfig
+          transition={{
+            ...framerMotionConfig,
+          }}
+        >
+        <Canvas shadows camera={{ position: [1, 1.5, 7], fov: 40 }}>
+          {/* <Canvas shadows camera={{ position: [1, 2, 8], fov: 40 }}> */}
+          <ScrollControls pages={4} damping={0.1} >
+            <ScrollManager section={section} onSectionChange={setSection}/>
+            <Scroll>
+              <Suspense>
+                {started && (
+                  <Experience section={section} menuOpen={menuOpen} />
+                )}
+              </Suspense>
+            </Scroll>
+            <Scroll html>
+              <Suspense>
+                {started && (
+                  <Interface setSection={setSection}/>
+                )}
+              </Suspense>
+            </Scroll>
+          </ScrollControls>
+        </Canvas>
+        <Menu onSectionChange={setSection} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <Cursor />
+      </MotionConfig>
+      <Leva hidden />
     </>
   );
 }

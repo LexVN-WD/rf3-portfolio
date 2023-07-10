@@ -164,7 +164,7 @@ const ProjectsSection = () => {
 
   return (
     <Section>
-      <div className="flex justify-center items-center w-full h-full gap-8">
+      <motion.div whileInView={"visible"} className="flex justify-center items-center w-full h-full gap-8">
         <button
           className="hover:text-indigo-600 transition-colors"
           onClick={previousProject}
@@ -178,7 +178,7 @@ const ProjectsSection = () => {
         >
           Next →
         </button>
-      </div>
+      </motion.div>
     </Section>
   );
 };

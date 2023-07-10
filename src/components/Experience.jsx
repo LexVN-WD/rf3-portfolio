@@ -48,12 +48,12 @@ export default function Experience(props) {
 
   const [characterAnimation, setCharacterAnimation] = useState("Typing");
 
-  useEffect(() => {
-    setCharacterAnimation("Falling");
-    setTimeout(() => {
-      setCharacterAnimation(section === 0 ? "Typing" : "Idle");
-    }, 600);
-  }, [section]);
+  useEffect(() => { 
+      setCharacterAnimation("Falling");
+      setTimeout(() => {
+        setCharacterAnimation(section === 0 ? "Typing" : "Idle");
+      }, 600);
+    }, [section]);
 
   const characterGroup = useRef();
 
@@ -71,6 +71,10 @@ export default function Experience(props) {
     state.camera.position.x = cameraPositionX.get();
     state.camera.lookAt(cameraLookAtX.get(), 0, 0);
 
+    if (section === 0) {
+      characterContainerAboutRef.current.getWorldPosition(characterGroup.current.position);
+    }
+
   });
 
 
@@ -82,16 +86,17 @@ export default function Experience(props) {
           ref={characterGroup}
           position={[1, 0.25, 4.32]}
           rotation={[2.9, 1.35, -2.8]}
-          scale={1.05}
+          scale={1.2}
           animate={"" + section}
           transition={{
             duration: 0.5
           }}
           variants={{
             0: {
-              scaleX: officeScaleRatio,
-              scaleY: officeScaleRatio,
-              scaleZ: officeScaleRatio,
+              positionY: 4,
+              scaleX: officeScaleRatio * 1.25,
+              scaleY: officeScaleRatio * 1.02,
+              scaleZ: officeScaleRatio * 1.25,
 
             },
             1: {
@@ -134,11 +139,12 @@ export default function Experience(props) {
         </motion.group>
       
       {/* OFFICE */}
+      
       <motion.group 
         position={[
-          isMobile ? 0 : 0 * officeScaleRatio, 
-          isMobile ? -viewport.height / 6 : 2,
-          4,
+          isMobile ? -0.85 : 0 * officeScaleRatio, 
+          isMobile ? -viewport.height / 2  : 2,
+          isMobile ? 5 : 4,
         ]}
         scale={[
           officeScaleRatio,
