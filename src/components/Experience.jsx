@@ -99,22 +99,17 @@ export default function Experience(props) {
                 rotateZ: 0,
               },
             3: {
-                y: -viewport.height * 3 - 0.4,
-                x: 0.25,
-                z: 7,
+                y: -viewport.height * 3 - 0.1,
+                x: 0.2,
+                z: 6.3,
                 rotateX: 0,
                 rotateY: -Math.PI / 5,
                 rotateZ: 0,
-
-                scaleX: 1.3,
-                scaleY: 1.3,
-                scaleZ: 1.3,
-
               },
             
           }}
           >
-          <Avatar animation={characterAnimation} />
+          <Avatar animation={characterAnimation} wireframe={section === 1}/>
         </motion.group>
       <motion.group 
         position={[0, 2, 5]}

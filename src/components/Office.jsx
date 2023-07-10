@@ -35,7 +35,9 @@ export default function Office(props) {
   const textureOpacity = useMotionValue(0);
 
   useEffect(() => {
-    animate(textureOpacity, section === 0 ? 1 : 0);
+    animate(textureOpacity, section === 0 ? 1 : 0, {
+      duration: 0.8,
+    });
   }, [section]);
   
   useFrame(() => {

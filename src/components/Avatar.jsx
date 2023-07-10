@@ -6,12 +6,11 @@ import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three';
 
 export default function Avatar(props) {
-  const { animation } = props;
+  const { animation, wireframe } = props;
   
-  const { headFollow, cursorFollow, wireframe } = useControls({
+  const { headFollow, cursorFollow } = useControls({
     headFollow: false,
     cursorFollow: false,
-    wireframe: false,
   });
   
   
