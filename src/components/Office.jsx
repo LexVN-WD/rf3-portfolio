@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useGLTF, useTexture } from '@react-three/drei'
+import { useGLTF, useTexture, useVideoTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import { motion } from "framer-motion-3d";
 import { animate, useMotionValue } from 'framer-motion';
@@ -7,13 +7,21 @@ import { useFrame } from '@react-three/fiber';
 
 export default function Office(props) {
   const {section} = props;
-
   const { nodes, materials } = useGLTF('models/scene.gltf');
-
   const texture = useTexture('textures/baked.jpg');
+  const textureVSCode = useVideoTexture('textures/vscode.mp4');
+  textureVSCode.center.set(0.5, 0.5)
+  textureVSCode.rotation = -Math.PI;
+  textureVSCode.repeat.x = -1;
+
+  const texturePreview = useVideoTexture('textures/preview.mp4');
+  texturePreview.center.set(0.5, 0.5)
+  texturePreview.rotation = -Math.PI;
+  texturePreview.repeat.x = -1;
+
+
 
   texture.flipY = false;
-  // texture.encoding = THREE.sRGBEncoding;
 
   const textureMaterial = new THREE.MeshStandardMaterial({
     map: texture,
@@ -33,6 +41,12 @@ export default function Office(props) {
 
   return (
     <group {...props} dispose={null} animate={{scale: section === 0 ? 1 : 0}}>
+      <mesh name="Screen2" geometry={nodes.Screen2.geometry} material={materials['Material.002']} position={[1.377, 0.113, -0.392]} >
+        <meshBasicMaterial map={textureVSCode} toneMapped={false} rotation={[0, Math.PI, 0]}/>
+      </mesh>
+      <mesh name="Screen2002" geometry={nodes.Screen2002.geometry} material={materials['Material.002']} position={[1.377, 0.113, -0.392]} >
+        <meshBasicMaterial map={texturePreview} toneMapped={false}/>
+      </mesh>
       <group name="Curtains" position={[-2.665, 0.191, -0.041]} rotation={[-Math.PI / 2, 0, 1.557]}>
         <mesh name="Curtains_Double" geometry={nodes.Curtains_Double.geometry} material={textureMaterial} />
         <mesh name="Curtains_Double_1" geometry={nodes.Curtains_Double_1.geometry} material={textureMaterial} />
