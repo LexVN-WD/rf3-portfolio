@@ -11,12 +11,14 @@ import Interface from "./components/Interface";
 import ScrollManager from "./components/ScrollManager";
 import Menu from "./components/Menu";
 import Cursor from "./components/Cursor";
+import LoadingScreen from "./components/LoadingScreen";
 import { framerMotionConfig } from "../lib/config";
 
 function App() {
 
   const [section, setSection] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -25,6 +27,7 @@ function App() {
 
   return (
     <>
+    <LoadingScreen started={started} setStarted={setStarted}/>
     <MotionConfig
         transition={{
           ...framerMotionConfig,
