@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import Projects from "./Projects";
+import { useAtom } from "jotai";
+import { currentProjectAtom, projectsArray } from "./Projects";
 
 const Section = (props) => {
   const {children} = props;
@@ -30,9 +31,7 @@ export default function Interface() {
     <div className="flex flex-col items-center w-screen">
       <AboutSection />
       <SkillsSection />
-      <Section>
-        <h1>Projects</h1>
-      </Section>
+      <ProjectsSection />
       <ContactSection />
     </div>
     </>
@@ -144,25 +143,34 @@ const SkillsSection = () => {
 };
 
 const ProjectsSection = () => {
+
+  const [currentProject, setCurrentProject] = useAtom(currentProjectAtom);
+
+  const nextProject = () => {
+    setCurrentProject((currentProject + 1) % projectsArray.length);
+  };
+
+  const previousProject = () => {
+    setCurrentProject((currentProject - 1 + projectsArray.length) % projectsArray.length);
+  };
+
   return (
     <Section>
-      
-      <motion.p className="text-lg text-gray-200 met-4"
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}}
-      >
-        Passionate, driven, and always looking to learn!
-        <br />
-        As a Web Developer, my goal is to continually add to my knowledge base and harness it to create products that are not only modern, but have the user-experience the focal point.
-My background in entertainment and social sciences provides me with a unique perspective on how to approach problems and find solutions.
-      </motion.p>
-      <motion.button 
-      className={`bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16`}
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}} 
-      >
-        Contact Me
-      </motion.button>
+      <div className="flex justify-center items-center w-full h-full gap-8">
+        <button
+          className="hover:text-indigo-600 transition-colors"
+          onClick={previousProject}
+        >
+          ← Previous
+        </button>
+        <h2 className="text-5xl font-bold">Projects</h2>
+        <button
+          className="hover:text-indigo-600 transition-colors"
+          onClick={nextProject}
+        >
+          Next →
+        </button>
+      </div>
     </Section>
   );
 };

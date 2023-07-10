@@ -3,7 +3,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { animate, useMotionValue } from "framer-motion";
 // import { animate, useMotionValue } from "framer-motion";
 import { motion } from "framer-motion-3d";
-import { useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import { useEffect, useRef } from "react";
 // import { atom, useAtom } from "jotai";
 // import { useEffect, useRef } from "react";
@@ -43,7 +43,7 @@ function Project(props) {
       <mesh
         position-z={-0.001}
         onClick={() => window.open(project.url, "_blank")}
-        ref={background}
+        ref={bg}
       >
         <planeGeometry args={[2.2, 2]} />
         <meshBasicMaterial color="black" transparent opacity={0.4} />
@@ -93,6 +93,13 @@ export default function Projects() {
           <motion.group 
             key={"project_" + index}
             position={[index * 2.5, 0, -3]}
+            animate={{
+              x: 0 + (index - currentProject) * 2.5,
+              y: currentProject === index ? 0 : -0.1,
+              z: currentProject === index ? -2 : -3,
+              rotateX: currentProject === index ? 0 : -Math.PI / 3,
+              rotateZ: currentProject === index ? 0 : -0.1 * Math.PI,
+            }}
           >
             <Project project={project} highlighted={index===currentProject} />
           </motion.group>
