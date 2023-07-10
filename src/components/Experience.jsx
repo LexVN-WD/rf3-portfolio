@@ -12,6 +12,7 @@ import { framerMotionConfig } from "../../lib/config";
 import Office from "./Office";
 import Avatar from "./Avatar";
 import Projects from "./Projects";
+import Background from "./Background";
 
 
 
@@ -67,53 +68,54 @@ export default function Experience(props) {
 
   return (
     <>
-    <ambientLight intensity={0.5} />
-    <motion.group 
-      position={[1, 0.25, 4.32]}
-      rotation={[2.9, 1.35, -2.8]}
-      scale={1.05}
-      animate={"" + section}
-      transition={{
-        duration: 0.5
-      }}
-      variants={{
-        0: {
+      <Background />
+      <ambientLight intensity={0.5} />
+        <motion.group 
+          position={[1, 0.25, 4.32]}
+          rotation={[2.9, 1.35, -2.8]}
+          scale={1.05}
+          animate={"" + section}
+          transition={{
+            duration: 0.5
+          }}
+          variants={{
+            0: {
 
-        },
-        1: {
-          y: -viewport.height + 0.2,
-          x: 0,
-          z: 5,
-          rotateX: 0,
-          rotateY: 0,
-          rotateZ: 0,
-        },
-        2: {
-            y: -viewport.height * 2 - 0.5,
-            x: -2,
-            z: 0,
-            rotateX: 0,
-            rotateY: Math.PI / 2,
-            rotateZ: 0,
-          },
-        3: {
-            y: -viewport.height * 3 - 0.4,
-            x: 0.25,
-            z: 7,
-            rotateX: 0,
-            rotateY: -Math.PI / 5,
-            rotateZ: 0,
+            },
+            1: {
+              y: -viewport.height + 0.2,
+              x: 0,
+              z: 5,
+              rotateX: 0,
+              rotateY: 0,
+              rotateZ: 0,
+            },
+            2: {
+                y: -viewport.height * 2 - 0.5,
+                x: -2,
+                z: 0,
+                rotateX: 0,
+                rotateY: Math.PI / 2,
+                rotateZ: 0,
+              },
+            3: {
+                y: -viewport.height * 3 - 0.4,
+                x: 0.25,
+                z: 7,
+                rotateX: 0,
+                rotateY: -Math.PI / 5,
+                rotateZ: 0,
 
-            scaleX: 1.3,
-            scaleY: 1.3,
-            scaleZ: 1.3,
+                scaleX: 1.3,
+                scaleY: 1.3,
+                scaleZ: 1.3,
 
-          },
-        
-      }}
-      >
-      <Avatar animation={characterAnimation} />
-    </motion.group>
+              },
+            
+          }}
+          >
+          <Avatar animation={characterAnimation} />
+        </motion.group>
       <motion.group 
         position={[0, 2, 5]}
         scale={[0.9, 0.9, 0.9]}
