@@ -21,7 +21,13 @@ export default function Experience(props) {
   const { menuOpen } = props;
 
   const { viewport } = useThree();
+
   const data = useScroll();
+
+  const isMobile = window.innerWidth < 768;
+
+  const respRatio = viewport.width / 12;
+  const officeScaleRatio = Math.max(0.5, Math.min(0.9 * respRatio, 0.9));
 
   const [section, setSection] = useState(0);
 
@@ -49,6 +55,8 @@ export default function Experience(props) {
     }, 600);
   }, [section]);
 
+  const characterGroup = useRef();
+
    useFrame((state) => {
     let curSection = Math.floor(data.scroll.current * data.pages);
 
@@ -71,6 +79,7 @@ export default function Experience(props) {
       <Background />
       <ambientLight intensity={0.2} />
         <motion.group 
+          ref={characterGroup}
           position={[1, 0.25, 4.32]}
           rotation={[2.9, 1.35, -2.8]}
           scale={1.05}
@@ -80,43 +89,66 @@ export default function Experience(props) {
           }}
           variants={{
             0: {
+              scaleX: officeScaleRatio,
+              scaleY: officeScaleRatio,
+              scaleZ: officeScaleRatio,
 
             },
             1: {
-              y: -viewport.height + 0.2,
-              x: 0,
-              z: 5,
+              x: isMobile ? 0.2 : 0,
+              y: isMobile? -viewport.height - 0.8 : -viewport.height + 0.2,
+              z: isMobile ? 3 : 4.5,
               rotateX: 0,
-              rotateY: 0,
+              rotateY: isMobile ? -Math.PI / 2 : 0,
               rotateZ: 0,
+              scaleX: isMobile ? 1.5 : 1,
+              scaleY: isMobile ? 1.5 : 1,
+              scaleZ: isMobile ? 1.5 : 1,
             },
             2: {
-                y: -viewport.height * 2 - 0.5,
-                x: -2,
-                z: 0,
-                rotateX: 0,
-                rotateY: Math.PI / 2,
-                rotateZ: 0,
+              x: isMobile ? -1 : -2,
+              y: -viewport.height * 2 + 0.3 ,
+              z: 0,
+              rotateX: 0,
+              rotateY: Math.PI / 2,
+              rotateZ: 0,
+              scaleX: 1,
+              scaleY: 1,
+              scaleZ: 1,
               },
             3: {
-                y: -viewport.height * 3 - 0.1,
-                x: 0.2,
-                z: 6.3,
-                rotateX: 0,
-                rotateY: -Math.PI / 5,
-                rotateZ: 0,
+              x: isMobile ? 0.08 : 0.1,
+              y: isMobile ? -viewport.height * 3 - 0.1 : -viewport.height * 3,
+              z: isMobile ? 6.3 : 6.5,
+              rotateX: 0,
+              rotateY: -Math.PI / 4,
+              rotateZ: 0,
+              scaleX: 1,
+              scaleY: 1,
+              scaleZ: 1,
               },
             
           }}
           >
           <Avatar animation={characterAnimation} wireframe={section === 1}/>
         </motion.group>
+      
+      {/* OFFICE */}
       <motion.group 
-        position={[0, 2, 5]}
-        scale={[0.9, 0.9, 0.9]}
+        position={[
+          isMobile ? 0 : 0 * officeScaleRatio, 
+          isMobile ? -viewport.height / 6 : 2,
+          4,
+        ]}
+        scale={[
+          officeScaleRatio,
+          officeScaleRatio,
+          officeScaleRatio,
+        ]}
         rotation-y={-Math.PI / 3}
         animate={{
-          y: section === 0 ? 0 : section === 1 ? -1.5 : -1,
+          y: isMobile ? viewport.height / 9 : 0,
+          // y: section === 0 ? 0 : section === 1 ? -1.5 : -1,
         }}
 
         >
@@ -131,12 +163,12 @@ export default function Experience(props) {
       </motion.group>
 
 
-          {/* SKILLS */}
+      {/* SKILLS */}
       <motion.group
-        position={[0, -1.5, -10]}
+        position={[0, isMobile ? -viewport.height : -1.5 * officeScaleRatio, -10]}
         animate={{
           z: section === 1 ? 0 : -10,
-          y: section === 1 ? -viewport.height : -1.5,
+          y: section === 1 ? -viewport.height : (isMobile ? -viewport.height : -1.5 * officeScaleRatio),
         }}
       >
         <directionalLight position={[-5, 3, 5]} intensity={0.4} />
