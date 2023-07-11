@@ -20,8 +20,6 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [started, setStarted] = useState(false);
 
-  const isMobile = window.innerWidth < 768;
-
   useEffect(() => {
     setMenuOpen(false);
   }, [section]);

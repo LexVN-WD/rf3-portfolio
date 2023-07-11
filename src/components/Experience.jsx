@@ -101,8 +101,8 @@ export default function Experience(props) {
             },
             1: {
               x: isMobile ? 0.2 : 0,
-              y: isMobile? -viewport.height - 0.8 : -viewport.height + 0.2,
-              z: isMobile ? 3 : 4.5,
+              y: isMobile? -viewport.height - 0.8 : -viewport.height - 0.1,
+              z: isMobile ? 3 : 4.3,
               rotateX: 0,
               rotateY: isMobile ? -Math.PI / 2 : 0,
               rotateZ: 0,
@@ -135,7 +135,7 @@ export default function Experience(props) {
             
           }}
           >
-          <Avatar animation={characterAnimation} wireframe={section === 1}/>
+          <Avatar animation={characterAnimation} />
         </motion.group>
       
       {/* OFFICE */}

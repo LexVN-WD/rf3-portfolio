@@ -1,14 +1,20 @@
+import Typed from "typed.js"
+import { useRef, useEffect, Suspense } from "react"
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import { useForm, ValidationError } from '@formspree/react';
 import { currentProjectAtom, projectsArray } from "./Projects";
+import { FaHtml5, FaCss3Alt, FaJsSquare, FaNodeJs, FaReact,} from 'react-icons/fa'
+import { SiNextdotjs, SiPostgresql, SiTailwindcss, SiThreedotjs, SiTypescript, } from 'react-icons/si'
+
+const isMobile = window.innerWidth < 768;
 
 const Section = (props) => {
   const {children, mobileTop} = props;
   
   return (
     <motion.section 
-      className={`h-screen w-screen p-8 max-w-screen-2xl mx-auto flex flex-col items-start justify-center ${mobileTop ? "justify-start md:justify-center" : "justify-center"}`}
+      className={`h-screen w-screen p-8 max-w-screen-2xl mx-auto flex flex-col items-start justify-end ${mobileTop ? "justify-start md:justify-end" : "justify-center"} `}
         initial={{ 
           opacity: 0,
           y: 50 
@@ -43,66 +49,118 @@ export default function Interface(props) {
 };
 
 const AboutSection = (props) => {
-
   const { setSection } = props;
+  
+  const el = useRef(null);
+
+  useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ["Full-Stack Web Developer", "Professional Voice Actor"],
+      typeSpeed: 50,
+      backSpeed: 50,
+      loop: true,
+      startDelay: 1000,
+      backDelay: 1200,
+      showCursor: true,
+      cursorChar: "|",
+      autoInsertCss: true,
+    });
+    return () => {
+      typed.destroy();
+    };
+  }, []);
+
   return (
-    <Section mobileTop>
-      <h1 className="text-4xl md:text-6xl font-extrabold leading-snug text-white mt-8 md:mt-0">
-        Hello, I'm
-        <br />
-        <span className="px-1 italic">Lex Van-Nugent</span>
-      </h1>
-      <motion.p className="text-lg text-gray-200 met-4"
+    <Section mobileTop >
+      <div className="flex flex-col max-h-[55%] md:h-full w-auto bg-gray-500 rounded-lg bg-opacity-40 md:bg-opacity-0 items-center">
+        <motion.h1 
+          className="text-3xl md:text-7xl font-extrabold leading-snug text-white mt-4 md:mt-6 md:pt-6 text-center"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 0.75 }}}
+        >
+          Lex Van-Nugent
+        </motion.h1>
+        <motion.div
+        className="w-full h-auto md:mt-2 text-center"
         initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}}
-      >
-        Passionate, driven, and always looking to learn!
-        <br />
-        As a Web Developer, my goal is to continually add to my knowledge base and harness it to create products that are not only modern, but have the user-experience the focal point.
-My background in entertainment and social sciences provides me with a unique perspective on how to approach problems and find solutions.
-      </motion.p>
-      <motion.button 
-        onClick={() => setSection(3)}
-        className={`bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-4 md:mt-16`}
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}} 
-      >
-        Contact Me
-      </motion.button>
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 0.75 }}}
+        >
+          <span className="typer text-[#ff6699] text-2xl md:text-6xl font-bold" ref={el}/>
+        </motion.div>
+        <motion.p className="text-m md:text-3xl md:mt-4 text-gray-200 flex flex-col justify-between text-center"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}}
+        >
+         <span className="italic pt-1">My unique blend of technical and creative skills allows me to create user-friendly digital solutions.</span>
+         <br/>
+         <span className="font-bold">As a problem-solver with a knack for innovation, I'm well-equipped to contribute to impactful web development projects.</span>
+        </motion.p>
+        <motion.button
+          onClick={() => setSection(3)}
+          className={`bg-indigo-600 text-white py-1 md:py-2 px-4 rounded-lg font-bold text-lg my-4 md:mt-16`}
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.75 }}}
+        >
+          Contact Me
+        </motion.button>
+      </div>
     </Section>
   );
 };
 
 const skills = [
   {
-    title: "Threejs / React Three Fiber",
-    level: 80,
-  },
-  {
     title: "React",
-    level: 90,
+    level: 95,
+    icon: <FaReact className="text-blue-600 w-full h-full"/>,
   },
   {
-    title: "Nodejs",
-    level: 80,
+    title: "HTML5",
+    level: 90,
+    icon: <FaHtml5 className="text-red-600 w-full h-full"/>,
+  },
+  {
+    title: "CSS3",
+    level: 90,
+    icon: <FaCss3Alt className="text-blue-500 w-full h-full"/>,
   },
   {
     title: "JavaScript",
     level: 90,
+    icon: <FaJsSquare className="text-yellow-300 w-full h-full"/>,
   },
   {
-    title: "HTML",
-    level: 90,
+    title: "Threejs / React Three Fiber",
+    level: 85,
+    icon: <SiThreedotjs className="text-black w-full h-full"/>,
   },
   {
-    title: "CSS",
-    level: 90,
+    title: "POSTGRESQL",
+    level: 85,
+    icon: <SiPostgresql className="text-blue-700 w-full h-full"/>,
+  },
+  {
+    title: "Nodejs",
+    level: 80,
+    icon: <FaNodeJs className="text-green-600 w-full h-full"/>,
+  },
+  {
+    title: "TailwindCSS",
+    level: 80,
+    icon: <SiTailwindcss className="text-indigo-600 w-full h-full"/>,
+  },
+  {
+    title: "NextJS",
+    level: 75,
+    icon: <SiNextdotjs className="text-black w-full h-full"/>,
   },
   {
     title: "TypeScript",
     level: 60,
+    icon: <SiTypescript className="text-blue-600 w-full h-full"/>,
   },
 ];
+
 
 const SkillsSection = () => {
   return (
@@ -111,36 +169,41 @@ const SkillsSection = () => {
           className="w-full"
           whileInView={"visible"}
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white">Skills</h2>
-          <div className="mt-8 space-y-4">
+          <h2 className="text-3xl md:text-6xl font-bold text-white">Skills</h2>
+          <div className="md:mt-8 space-y-2 md:space-y-4 w-full h-full scale-90">
             {skills.map((skill, index) => (
-              <div className="w-full md:w-64" key={index}>
-                <motion.h3 
-                  className="text-lg md:text-xl font-bold text-gray-100"
-                  initial={{ opacity: 0, }}
-                  variants={{
-                    visible: { 
-                      opacity: 1,
-                      transition: { duration: 1, delay: 1 + index * 0.2 },
-                    },
-                  }}
-                  >
-                    {skill.title}
-                  </motion.h3>
-                <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
-                  <motion.div
-                    className="h-full bg-indigo-500 rounded-full"
-                    style={{ width: `${skill.level}% `}}
-                    initial={{ scaleX: 0, originX: 0, }}
+              <div className="flex flex-row gap-3 w-full md:w-96" key={index}>
+                <div className="w-[15%]">
+                    {skill.icon}
+                </div>
+                <div className="flex flex-col w-[80%]">
+                  <motion.h3
+                    className="text-xl md:text-2xl font-bold text-gray-100"
+                    initial={{ opacity: 0, }}
                     variants={{
-                      visible: { 
-                        scaleX: 1, 
-                        transition: {
-                           duration: 1, delay: 1 + index * 0.2, 
-                          }
+                      visible: {
+                        opacity: 1,
+                        transition: { duration: 1, delay: 1 + index * 0.2 },
                       },
                     }}
+                    >
+                      {skill.title}
+                  </motion.h3>
+                  <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
+                    <motion.div
+                      className="h-full bg-indigo-500 rounded-full"
+                      style={{ width: `${skill.level}% `}}
+                      initial={{ scaleX: 0, originX: 0, }}
+                      variants={{
+                        visible: {
+                          scaleX: 1,
+                          transition: {
+                             duration: 1, delay: 1 + index * 0.2,
+                            }
+                        },
+                      }}
                     />
+                  </div>
                 </div>
               </div>
             ))}
