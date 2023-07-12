@@ -1,11 +1,15 @@
 import Typed from "typed.js"
-import { useRef, useEffect, Suspense } from "react"
+import { useRef, useEffect } from "react"
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import { useForm, ValidationError } from '@formspree/react';
 import { currentProjectAtom, projectsArray } from "./Projects";
+
+
+// ICONS
 import { FaHtml5, FaCss3Alt, FaJsSquare, FaNodeJs, FaReact,} from 'react-icons/fa'
 import { SiNextdotjs, SiPostgresql, SiTailwindcss, SiThreedotjs, SiTypescript, } from 'react-icons/si'
+
 
 const isMobile = window.innerWidth < 768;
 
@@ -23,7 +27,7 @@ const Section = (props) => {
           opacity: 1,
           y: 0,
           transition: {
-            duration: 1,
+            duration: 1.5,
             delay: 0.5,
           },
         }}
@@ -39,13 +43,13 @@ export default function Interface(props) {
   return (
     <>
     <div className="flex flex-col items-center w-screen">
-      <AboutSection setSection={setSection}/>
+      <AboutSection setSection={setSection} />
       <SkillsSection />
       <ProjectsSection />
       <ContactSection />
-    </div>
+     </div>
     </>
-  )
+  );
 };
 
 const AboutSection = (props) => {
@@ -71,7 +75,7 @@ const AboutSection = (props) => {
   }, []);
 
   return (
-    <Section mobileTop >
+     <Section mobileTop >
       <div className="flex flex-col max-h-[55%] md:h-full w-auto bg-gray-500 rounded-lg bg-opacity-40 md:bg-opacity-0 items-center">
         <motion.h1 
           className="text-3xl md:text-7xl font-extrabold leading-snug text-white mt-4 md:mt-6 md:pt-6 text-center"
@@ -163,10 +167,11 @@ const skills = [
 
 
 const SkillsSection = () => {
+
   return (
     <Section>
         <motion.div
-          className="w-full"
+          className="w-full h-full"
           whileInView={"visible"}
         >
           <h2 className="text-3xl md:text-6xl font-bold text-white">Skills</h2>
@@ -227,20 +232,25 @@ const ProjectsSection = () => {
 
   return (
     <Section>
-      <motion.div whileInView={"visible"} className="flex justify-center items-center w-full h-full gap-8">
-        <button
-          className="hover:text-indigo-600 transition-colors"
-          onClick={previousProject}
-        >
-          ← Previous
-        </button>
-        <h2 className="text-3xl md:text-5xl  font-bold">Projects</h2>
-        <button
-          className="hover:text-indigo-600 transition-colors"
-          onClick={nextProject}
-        >
-          Next →
-        </button>
+      <motion.div 
+        whileInView={"visible"}
+        className="flex flex-col justify-end items-center w-full h-full gap-8 scale-90 md:scale-100"
+      >
+        <div className="flex flex-row gap-2 md:gap-8 items-center justify-between md:justify-between w-[95%] md:w-[60%] pb-10 md:pb-20">
+          <button
+            className="text-white hover:text-indigo-600 transition-colors text-lg md:text-4xl"
+            onClick={previousProject}
+          >
+            ← Previous
+          </button>
+          <h2 className="text-xl md:text-7xl text-white font-bold">Projects</h2>
+          <button
+            className="text-white hover:text-indigo-600 transition-colors text-lg md:text-4xl"
+            onClick={nextProject}
+          >
+            Next →
+          </button>
+        </div>
       </motion.div>
     </Section>
   );
@@ -250,6 +260,7 @@ const ProjectsSection = () => {
 const ContactSection = () => {
 
   const [state, handleSubmit] = useForm("mayzgjbd");
+
   return (
     <Section>
       <h2 className="text-3xl md:text-5xl font-bold">Contact me</h2>
@@ -258,7 +269,7 @@ const ContactSection = () => {
           <p className=" text-xl md:text-2xl font-bold text-gray-900 text-center">Thank you for contacting me!</p>
         ) : (
           <form onSubmit={handleSubmit}>
-            <label for="name" className="font-medium text-gray-900 block mb-1">
+            <label htmlFor="name" className="font-medium text-gray-900 block mb-1">
               Name
             </label>
             <input
@@ -268,7 +279,7 @@ const ContactSection = () => {
               className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
             />
             <label
-              for="email"
+              htmlFor="email"
               className="font-medium text-gray-900 block mb-1 mt-8"
             >
               Email
@@ -286,7 +297,7 @@ const ContactSection = () => {
               errors={state.errors}
             />
             <label
-              for="email"
+              htmlFor="email"
               className="font-medium text-gray-900 block mb-1 mt-8"
             >
               Message

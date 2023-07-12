@@ -14,7 +14,7 @@ import Cursor from "./components/Cursor";
 import LoadingScreen from "./components/LoadingScreen";
 import { framerMotionConfig } from "../lib/config";
 
-function App() {
+export default function App() {
 
   const [section, setSection] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,9 +33,8 @@ function App() {
             ...framerMotionConfig,
           }}
         >
-        <Canvas shadows camera={{ position: [1, 1.5, 7], fov: 40 }}>
-          {/* <Canvas shadows camera={{ position: [1, 2, 8], fov: 40 }}> */}
-          <ScrollControls pages={4} damping={0.1} >
+        <Canvas shadows camera={{ position: [1, 1.5, 7], fov: 35, }}>
+          <ScrollControls pages={4} damping={0.2} >
             <ScrollManager section={section} onSectionChange={setSection}/>
             <Scroll>
               <Suspense>
@@ -60,5 +59,3 @@ function App() {
     </>
   );
 }
-
-export default App;

@@ -1,12 +1,9 @@
 import { Image, Text } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { animate, useMotionValue } from "framer-motion";
-// import { animate, useMotionValue } from "framer-motion";
 import { motion } from "framer-motion-3d";
 import { atom, useAtom } from "jotai";
-import { useEffect, useRef } from "react";
-// import { atom, useAtom } from "jotai";
-// import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const projectsArray = [
   {
@@ -80,32 +77,46 @@ function Project(props) {
 export const currentProjectAtom = atom(Math.floor(projectsArray.length / 2));
 
 export default function Projects() {
-
   const { viewport } = useThree();
   const [currentProject] = useAtom(currentProjectAtom);
+  const [scale, setScale] = useState(1);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.matchMedia("(max-width: 600px)").matches;
+      const newScale = isMobile ? 0.8 : 1;
+      setScale(newScale);
+    };
+
+    handleResize(); // Call the function initially
+
+    window.addEventListener("resize", handleResize); // Add event listener for resize
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Clean up the event listener
+    };
+  }, []);
 
   return (
     <>
-    <group position-y={-viewport.height * 2 + 1}>
-      {
-        projectsArray.map((project, index) => (
-          <motion.group 
+      <group position-y={-viewport.height * 2 - 0.5}>
+        {projectsArray.map((project, index) => (
+          <motion.group
             key={"project_" + index}
             position={[index * 2.5, 0, -3]}
             animate={{
-              x: 0 + (index - currentProject) * 2.5,
+              x: 0 + (index - currentProject) * 3,
               y: currentProject === index ? 0 : -0.1,
               z: currentProject === index ? -2 : -3,
               rotateX: currentProject === index ? 0 : -Math.PI / 3,
               rotateZ: currentProject === index ? 0 : -0.1 * Math.PI,
+              scale: scale, // Set the scale based on the scale state
             }}
           >
-            <Project project={project} highlighted={index===currentProject} />
+            <Project project={project} highlighted={index === currentProject} />
           </motion.group>
-        ))
-      }
-    </group>;
+        ))}
+      </group>
     </>
   );
 }

@@ -1,8 +1,4 @@
-import {
-  Sky,
-  Stars,
-  useScroll,
-} from "@react-three/drei";
+import { useScroll, } from "@react-three/drei";
 import * as THREE from "three";
 import { useFrame, useThree } from "@react-three/fiber";
 import { animate, useMotionValue } from "framer-motion";
@@ -52,7 +48,7 @@ export default function Experience(props) {
       setCharacterAnimation("Falling");
       setTimeout(() => {
         setCharacterAnimation(section === 0 ? "Typing" : "Idle");
-      }, 600);
+      }, 300);
     }, [section]);
 
   const characterGroup = useRef();
@@ -81,7 +77,9 @@ export default function Experience(props) {
   return (
     <>
       <Background />
-      <ambientLight intensity={0.2} />
+      {/* <ambientLight intensity={0.4} /> */}
+      <pointLight position={[3, 2, 5]}  intensity={1} color="#3a0da8"/>
+      <pointLight position={[100, 30, 5]}  intensity={0.4}/>
         <motion.group 
           ref={characterGroup}
           position={[1, 0.25, 4.32]}
@@ -100,19 +98,19 @@ export default function Experience(props) {
 
             },
             1: {
-              x: isMobile ? 0.2 : 0,
+              x: isMobile ? 0.1 : 0,
               y: isMobile? -viewport.height - 0.8 : -viewport.height - 0.1,
-              z: isMobile ? 3 : 4.3,
+              z: isMobile ? 2.5 : 4,
               rotateX: 0,
               rotateY: isMobile ? -Math.PI / 2 : 0,
               rotateZ: 0,
-              scaleX: isMobile ? 1.5 : 1,
-              scaleY: isMobile ? 1.5 : 1,
-              scaleZ: isMobile ? 1.5 : 1,
+              scaleX: isMobile ? 1.3 : 1,
+              scaleY: isMobile ? 1.3 : 1,
+              scaleZ: isMobile ? 1.3 : 1,
             },
             2: {
-              x: isMobile ? -1 : -2,
-              y: -viewport.height * 2 + 0.3 ,
+              x: isMobile ? -0.8 : -2,
+              y: isMobile ? -viewport.height * 2 - 1 : -viewport.height * 2 - 0.3 ,
               z: 0,
               rotateX: 0,
               rotateY: Math.PI / 2,
