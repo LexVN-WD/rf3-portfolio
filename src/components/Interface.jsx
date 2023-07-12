@@ -76,9 +76,9 @@ const AboutSection = (props) => {
 
   return (
      <Section mobileTop >
-      <div className="flex flex-col max-h-[55%] md:h-full w-auto bg-gray-500 rounded-lg bg-opacity-40 md:bg-opacity-0 items-center">
+      <div className="flex flex-col max-h-[50%] mb-2 md:h-full w-auto bg-gray-500 rounded-lg bg-opacity-40 md:bg-opacity-0 items-center">
         <motion.h1 
-          className="text-3xl md:text-7xl font-extrabold leading-snug text-white mt-4 md:mt-6 md:pt-6 text-center"
+          className="text-2xl md:text-7xl font-extrabold leading-snug text-white mt-4 md:mt-6 md:pt-6 text-center"
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 0.75 }}}
         >
