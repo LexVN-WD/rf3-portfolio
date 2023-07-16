@@ -76,7 +76,7 @@ const AboutSection = (props) => {
 
   return (
      <Section mobileTop >
-      <div className="flex flex-col h-[50%] mb-2 md:max-h-[60%] w-auto bg-gray-500 rounded-lg bg-opacity-20 md:bg-opacity-0 items-center">
+      <div className="flex flex-col h-auto max-h-[60%] mb-2 md:max-h-[60%] w-auto bg-gray-500 rounded-lg bg-opacity-20 md:bg-opacity-0 items-center">
         <motion.h1 
           className="text-xl md:text-7xl font-extrabold leading-snug text-white mt-4 md:mt-6 md:pt-6 text-center"
           initial={{ opacity: 0, y: 25 }}
