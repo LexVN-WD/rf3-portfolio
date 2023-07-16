@@ -76,9 +76,9 @@ const AboutSection = (props) => {
 
   return (
      <Section mobileTop >
-      <div className="flex flex-col max-h-[70%] mb-2 md:max-h-[60%] w-auto bg-gray-500 rounded-lg bg-opacity-40 md:bg-opacity-0 items-center">
+      <div className="flex flex-col h-[50%] mb-2 md:max-h-[60%] w-auto bg-gray-500 rounded-lg bg-opacity-20 md:bg-opacity-0 items-center">
         <motion.h1 
-          className="text-2xl md:text-7xl font-extrabold leading-snug text-white mt-4 md:mt-6 md:pt-6 text-center"
+          className="text-xl md:text-7xl font-extrabold leading-snug text-white mt-4 md:mt-6 md:pt-6 text-center"
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 0.75 }}}
         >
@@ -89,9 +89,9 @@ const AboutSection = (props) => {
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 0.75 }}}
         >
-          <span className="typer text-[#ff6699] text-2xl md:text-6xl font-bold" ref={el}/>
+          <span className="typer text-[#ff6699] text-lg md:text-6xl font-bold" ref={el}/>
         </motion.div>
-        <motion.p className="text-m md:text-3xl md:mt-4 text-gray-200 flex flex-col justify-between text-center"
+        <motion.p className="text-sm md:text-3xl md:mt-4 text-gray-200 flex flex-col justify-between text-center"
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.5 }}}
         >
@@ -101,7 +101,7 @@ const AboutSection = (props) => {
         </motion.p>
         <motion.button
           onClick={() => setSection(3)}
-          className={`bg-indigo-600 text-white py-1 md:py-2 px-4 rounded-lg font-bold text-lg my-4 md:mt-16`}
+          className={`bg-indigo-600 text-white py-1 md:py-2 px-4 rounded-lg font-bold text-, my-4 md:mt-16`}
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0, transition: { duration: 1, delay: 1.75 }}}
         >
