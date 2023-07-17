@@ -13,10 +13,28 @@ export const projectsArray = [
     description: "NextJS E-Commerce Store Front-End",
   },
   {
+    title: "ScuttleCrab",
+    url: "https://github.com/LexVN-WD/scuttlecrab",
+    image: "projects/scuttlecrab.png",
+    description: "League of Legends Stats Website",
+  },
+  {
     title: "Old Portfolio",
     url: "https://lexvnwebdev.vercel.app/",
     image: "projects/portfolio.png",
     description: "NextJS Portfolio",
+  },
+  {
+    title: "WhatsThere?",
+    url: "https://github.com/LexVN-WD/whatsThere",
+    image: "projects/whatsthere.png",
+    description: "NextJS Travel Companion App",
+  },
+  {
+    title: "Scheduler",
+    url: "https://github.com/LexVN-WD/scheduler",
+    image: "projects/scheduler.png",
+    description: "React Scheduler/Appointment App",
   },
 ];
 
@@ -79,6 +97,7 @@ export const currentProjectAtom = atom(Math.floor(projectsArray.length / 2));
 export default function Projects() {
   const { viewport } = useThree();
   const [currentProject] = useAtom(currentProjectAtom);
+
   const [scale, setScale] = useState(1);
 
   useEffect(() => {
