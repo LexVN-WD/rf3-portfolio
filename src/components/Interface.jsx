@@ -171,11 +171,11 @@ const SkillsSection = () => {
   return (
     <Section>
         <motion.div
-          className="w-full h-full scale-90 md:scale-100 flex flex-col justify-center items-center py-4"
+          className="w-full h-full scale-90 md:scale-100 flex flex-col justify-evenly py-4"
           whileInView={"visible"}
         >
-          <h2 className="text-3xl md:text-6xl font-bold text-white">Skills</h2>
-          <div className="md:mt-8 space-y-2 md:space-y-4 w-full h-full scale-90">
+          <h2 className="text-5xl md:text-6xl font-bold text-white">Skills</h2>
+          <div className="flex flex-col md:mt-8 space-y-2 md:space-y-4 w-full  justify-center">
             {skills.map((skill, index) => (
               <div className="flex flex-row gap-3 w-full md:w-96" key={index}>
                 <div className="w-[15%]">
