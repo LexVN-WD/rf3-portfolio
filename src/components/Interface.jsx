@@ -263,7 +263,7 @@ const ContactSection = () => {
 
   return (
     <Section>
-      <h2 className="text-3xl md:text-5xl font-bold">Contact me</h2>
+      <h2 className="text-3xl md:text-5xl font-bold text-white">Contact me</h2>
       <div className="mt-8 p-8 rounded-md bg-white bg-opacity-50 w-96 max-w-full">
         {state.succeeded ? (
           <p className=" text-xl md:text-2xl font-bold text-gray-900 text-center">Thank you for contacting me!</p>

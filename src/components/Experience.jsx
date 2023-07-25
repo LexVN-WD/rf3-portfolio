@@ -121,8 +121,8 @@ export default function Experience(props) {
               },
             3: {
               x: isMobile ? 0.08 : 0.1,
-              y: isMobile ? -viewport.height * 3 - 0.1 : -viewport.height * 3,
-              z: isMobile ? 6.3 : 6.5,
+              y: isMobile ? -viewport.height * 3 - 0.1 : -viewport.height * 3 - 0.3,
+              z: isMobile ? 6.3 : 6.1,
               rotateX: 0,
               rotateY: -Math.PI / 4,
               rotateZ: 0,
