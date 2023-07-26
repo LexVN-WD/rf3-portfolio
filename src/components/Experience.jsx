@@ -79,7 +79,7 @@ export default function Experience(props) {
       <Background />
       {/* <ambientLight intensity={0.4} /> */}
       <pointLight position={[3, 2, 5]}  intensity={1} color="#3a0da8"/>
-      <pointLight position={[100, 30, 5]}  intensity={0.4}/>
+      <pointLight position={[100, 30, 5]}  intensity={0.7}/>
         <motion.group 
           ref={characterGroup}
           position={[1, 0.25, 4.32]}
@@ -122,9 +122,9 @@ export default function Experience(props) {
             3: {
               x: isMobile ? 0.08 : 0.1,
               y: isMobile ? -viewport.height * 3 - 0.1 : -viewport.height * 3 - 0.3,
-              z: isMobile ? 6.3 : 6.1,
+              z: isMobile ? 6.3 : 6.3,
               rotateX: 0,
-              rotateY: -Math.PI / 4,
+              rotateY: -Math.PI / 6,
               rotateZ: 0,
               scaleX: 1,
               scaleY: 1,
